@@ -1,0 +1,12 @@
+import openai                                                       #import the open api package
+
+def open_file(filepath):                                            #define what "open_file" is and does 
+    with open(filepath, 'r', encoding='utf-8') as infile:
+        return infile.read()
+
+
+openai.api_key = open_file('openaiapikey.txt')                      # open the file with my api key
+
+
+completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Give me 3 ideas for apps I could build with openai apis "}])
+print(completion.choices[0].message.content)
